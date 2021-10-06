@@ -89,16 +89,22 @@ class _MyHomePageState extends State<MyHomePage> {
                   // the data that we want to pass with draggable widget
                   data: Colors.blue,
                   //thing that we drag
-                  feedback: ContainerBlue(),
+                  feedback: ContainerCustom(Colors.blue),
                   //what we see before dragging
-                  child: ContainerBlue(),
+                  child: ContainerCustom(Colors.blue),
                   //what remains behind
                   childWhenDragging: Empty(),
                 ),
                 Draggable<Color>(
                   data: Colors.red,
-                  feedback: ContainerRed(),
-                  child: ContainerRed(),
+                  feedback: ContainerCustom(Colors.red),
+                  child: ContainerCustom(Colors.red),
+                  childWhenDragging: Empty(),
+                ),
+                Draggable<Color>(
+                  data: Colors.green,
+                  feedback: ContainerCustom(Colors.green),
+                  child: ContainerCustom(Colors.green),
                   childWhenDragging: Empty(),
                 )
               ],
@@ -125,32 +131,16 @@ class Empty extends StatelessWidget {
   }
 }
 
-class ContainerRed extends StatelessWidget {
-  const ContainerRed({
-    Key? key,
-  }) : super(key: key);
+class ContainerCustom extends StatelessWidget {
+  final Color color;
+  const ContainerCustom(this.color);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 100,
       width: 100,
-      color: Colors.red,
-    );
-  }
-}
-
-class ContainerBlue extends StatelessWidget {
-  const ContainerBlue({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      width: 100,
-      color: Colors.blue,
+      color: color,
     );
   }
 }
